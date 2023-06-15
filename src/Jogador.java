@@ -4,9 +4,8 @@ public class Jogador {
     private int pontos;
 
     public void Pontuar() {
-        if (jogada == posicaoNavio) {
             this.pontos ++;
-        }
+        
     }
 
     Jogador(String nome) {
