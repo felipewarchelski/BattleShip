@@ -5,13 +5,13 @@ public class Tabuleiro {
     private int tamanho[][];
     private String simbolo;
   
-    public void desenhaTabuleiro(){
-    for (int l=1; l<11; l++){
-        for (int c=1; c<11; c++){
-            System.out.println("1");
+    public void DesenhaTabuleiro(){
+    for (int fileira=0; fileira<10; fileira++){
+        for (int coluna=0; coluna<10; coluna++){
+            System.out.print("|" + fileira + "." + coluna + "|");
         }
+        System.out.println("");
     }
     
     }
-
 }

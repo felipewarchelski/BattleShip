@@ -21,7 +21,9 @@ public class Main {
         int coluna = scanner.nextInt();
         System.out.println("Digite a fileira que deseja atacar: (1-10)");
         int fileira = scanner.nextInt();
-
+        
+        Tabuleiro tabuleiro = new Tabuleiro();
+        tabuleiro.DesenhaTabuleiro();
         scanner.close();
 
 	}
