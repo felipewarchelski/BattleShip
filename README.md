@@ -1,4 +1,6 @@
-ANOTAÇÕES DE CONFECÇÃO DE SOFTWARE: 
+### Olá Colaboradr! 👋
+
+📣 - UTILIZE ESSE README PARA FAZER ANOTAÇÕES DE CONFECÇÃO DE SOFTWARE:
 
 ##
 
