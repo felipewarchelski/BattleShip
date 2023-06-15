@@ -1,4 +1,4 @@
-### Olá Colaboradr! 👋
+### Olá Colaborador! 👋
 
 📣 - UTILIZE ESSE README PARA FAZER ANOTAÇÕES DE CONFECÇÃO DE SOFTWARE:
 
