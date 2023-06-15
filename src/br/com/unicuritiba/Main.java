@@ -1,10 +1,14 @@
+package br.com.unicuritiba;
+
 import java.util.Random;
 import java.util.Scanner;
+import br.com.unicuritiba.model.Tabuleiro;
 
-public class App {
-    public static void main(String[] args) {
+public class Main {
 
-        Scanner scanner = new Scanner(System.in);
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
         System.out.println("Bem vindo ao Batalha Naval");
@@ -18,12 +22,8 @@ public class App {
         System.out.println("Digite a fileira que deseja atacar: (1-10)");
         int fileira = scanner.nextInt();
 
-        String x = "1";
-        x.desenhaTabuleiro();
-
         scanner.close();
 
-    }
+	}
 
-    
 }

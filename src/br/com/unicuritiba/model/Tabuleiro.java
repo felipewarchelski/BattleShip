@@ -1,3 +1,5 @@
+package br.com.unicuritiba.model;
+
 public class Tabuleiro {
 
     private int tamanho[][];
@@ -11,4 +13,5 @@ public class Tabuleiro {
     }
     
     }
+
 }

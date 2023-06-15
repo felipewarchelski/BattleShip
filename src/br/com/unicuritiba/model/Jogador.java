@@ -1,3 +1,5 @@
+package br.com.unicuritiba.model;
+
 public class Jogador {
 
     private String nome;
@@ -29,7 +31,4 @@ public class Jogador {
         this.pontos = pontos;
     }
 
-    
-
 }
-
