@@ -69,8 +69,32 @@ public class Main {
             }
             System.out.println();
         }
+		
         System.out.println("");
         System.out.println(" Navio posicionado!");
+
+		System.out.println("Vamos testar sua pontaria");
+		System.out.println("Digite a linha do alvo");
+		String tiroL = scanner.nextLine();
+		System.out.println("Digite a coluna do alvo");
+		String tiroC = scanner.nextLine();
+		
+		
+		if (matriz[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] == "NV") {
+					System.out.println("Você acertou um tiro");
+					matriz[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "XX";
+				}
+		else {
+			System.out.println("Água");
+		}
+
+		for (int i = 0; i < 10; i++) {
+			for (int ind = 0; ind < 10; ind++) {
+				System.out.print(" " + matriz[i][ind]);
+			}
+			System.out.println();
+		}
+
 
         /*
          * atirar(int linha, int coluna) {
