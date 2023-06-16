@@ -33,12 +33,12 @@ public class Main {
             }
         }
 
-        // Mensagem de inicio
+        //MENSAGEM DE INICIO
         System.out.println("Bem Vindo ao Extreme BattleShip");
         System.out.println("Vamos iniciar a organização da sua frota");
         System.out.println();
 
-        // Escolha da posição e orientação pro jogador
+        //ESCOLHA POSIÇÃO E ORIENTAÇÃO DO NAVIO
         System.out.println();
         System.out.println("Escolha a orientação do navio(Vertical = [V] ou Horizontal = [H]):");
         String orientacao = scanner.nextLine();
@@ -50,7 +50,7 @@ public class Main {
             n3 = scanner.nextLine();
         }
 
-        // Escolha da posição pro bot
+        //ESCOLHA POSIÇÃO BOT
         String navioBot = String.valueOf(random.nextInt(99));
         if (Integer.valueOf(navioBot) >= 0 && Integer.valueOf(navioBot) < 10) {
             navioBot = "0" + navioBot;
@@ -123,7 +123,7 @@ public class Main {
             }
         }
 
-        // Mostrar Campos
+        //MOSTRAR CAMPOS
         System.out.println("=======CAMPO DO JOGADOR=======");
         for (int i = 0; i < 10; i++) {
             for (int ind = 0; ind < 10; ind++) {
@@ -146,17 +146,17 @@ public class Main {
 
         //TIRO DO JOGADOR
         System.out.println("Vamos testar sua pontaria!");
-        System.out.println("Digite a linha do alvo");
-        String tiroL = scanner.nextLine();
-        System.out.println("Digite a coluna do alvo");
-        String tiroC = scanner.nextLine();
+        System.out.println("Digite o número do alvo! com dois digitos");
+        String TiroCompleto = scanner.nextLine();
+        String tiroL = String.valueOf(TiroCompleto.charAt(0));
+        String tiroC = String.valueOf(TiroCompleto.charAt(1));
 
         if (("\u25A0" + "\u25A0").equals(matrizBot[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)])) {
             System.out.println("KABUM! Você acertou um tiro!");
-            "XX".equals(matrizBot[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)]);
+            matrizBot[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "XX";
         } else {
             System.out.println("JOGADOR acertou à água");
-			"~~".equals(matrizBot[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)]);
+			matrizBot[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "~~";
         }
         //TIRO DO BOT
         String tiroBotL = String.valueOf(random.nextInt(9));
@@ -164,11 +164,11 @@ public class Main {
 		
 		if (("\u25A0" + "\u25A0").equals(matriz[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)])) {
 			System.out.println("BOT acertou um tiro");
-			"XX".equals(matriz[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)]);
+			matriz[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)] = "XX";
 		}
 		else {
 			System.out.println("BOT acertou à Água");
-			"~~".equals(matriz[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)]);
+			matriz[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)] = "~~";
 		}
 		
 		System.out.println("");
