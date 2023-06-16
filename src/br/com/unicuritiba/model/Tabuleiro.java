@@ -1,8 +1,6 @@
 package br.com.unicuritiba.model;
 
 public class Tabuleiro {
-
-    private String simbolo;
   
     public void DesenhaTabuleiro(){
     for (int fileira=0; fileira<0.9; fileira += 0.1){
