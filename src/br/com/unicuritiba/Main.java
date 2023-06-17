@@ -3,192 +3,96 @@ package br.com.unicuritiba;
 import java.util.Random;
 import java.util.Scanner;
 
+import br.com.unicuritiba.model.Bot;
+import br.com.unicuritiba.model.Jogador;
+import br.com.unicuritiba.model.Tabuleiro;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+    	Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-
-        String[][] matriz = new String[10][10];
-        String[][] matrizBot = new String[10][10];
-
-        // Criação/Preenchimento das matriz
-        for (int i = 0; i < 10; i++) {
-            for (int ind = 0; ind < 10; ind++) {
-                matriz[i][ind] = Integer.toString(i) + Integer.toString(ind);
-            }
-        }
-
-        for (int i = 0; i < 10; i++) {
-            for (int ind = 0; ind < 10; ind++) {
-                System.out.print(" " + matriz[i][ind]);
-            }
-            System.out.println();
-        }
-
-        for (int i = 0; i < 10; i++) {
-            for (int ind = 0; ind < 10; ind++) {
-                matrizBot[i][ind] = Integer.toString(i) + Integer.toString(ind);
-            }
-        }
-
+        String[][] matrizJogador = new String[10][10];
+    	String[][] matrizBot = new String [10][10];
+    	String[][] matrizBotVisivel = new String [10][10];
+    	Tabuleiro tabuleiro = new Tabuleiro();
+        Bot bot = new Bot(null);
+        
+    	System.out.println("Bem Vindo ao Extreme BattleShip");
+    	System.out.println("Insira o nome de sua esquadra");
+    	String nomeJogador = scanner.nextLine();
+    	
+    	Jogador jogador = new Jogador(nomeJogador);
+        
+        tabuleiro.construirTabuleiro(matrizJogador);
+        tabuleiro.construirTabuleiro(matrizBot);
+        tabuleiro.construirTabuleiro(matrizBotVisivel);
+        
         //MENSAGEM DE INICIO
         System.out.println("Bem Vindo ao Extreme BattleShip");
         System.out.println("Vamos iniciar a organização da sua frota");
         System.out.println();
-
+        
+        tabuleiro.mostrarTabuleiro(matrizJogador);
+        
         //ESCOLHA POSIÇÃO E ORIENTAÇÃO DO NAVIO
         System.out.println();
         System.out.println("Escolha a orientação do navio(Vertical = [V] ou Horizontal = [H]):");
         String orientacao = scanner.nextLine();
-        System.out.println("Digite a posição inicial do Navio de tamanho 3 (horizontal):");
-        String n3 = scanner.nextLine();
-        while (Integer.parseInt(n3) > 99 || Integer.parseInt(n3) < 0 || n3.length() != 2) {
-            System.out.println("Valor Inválido");
-            System.out.println("Digite a posição inicial do Navio de tamanho 3:");
-            n3 = scanner.nextLine();
-        }
+        System.out.println("Digite a posição inicial do Navio de tamanho 3:");
+        String navio3 = scanner.nextLine();
+        
+        tabuleiro.validarLocal(navio3);        
 
         //ESCOLHA POSIÇÃO BOT
-        String navioBot = String.valueOf(random.nextInt(99));
-        if (Integer.valueOf(navioBot) >= 0 && Integer.valueOf(navioBot) < 10) {
-            navioBot = "0" + navioBot;
-        }
-        boolean encontrouPosicaoBot = false;
-        while (!encontrouPosicaoBot) {
-            for (int fileira = 0; fileira < 10; fileira++) {
-                for (int coluna = 0; coluna < 10; coluna++) {
-                    String comparacao = matrizBot[fileira][coluna];
-                    if (navioBot.equals(comparacao)) {
-                        if (coluna + 1 < 10 && coluna - 1 > -1) {
-                            matrizBot[fileira][coluna] = "\u25A0" + "\u25A0";
-                            matrizBot[fileira][coluna - 1] = "\u25A0" + "\u25A0";
-                            matrizBot[fileira][coluna + 1] = "\u25A0" + "\u25A0";
-                            encontrouPosicaoBot = true;
-                        } else {
-                            navioBot = String.valueOf(random.nextInt(99));
-                            if (Integer.valueOf(navioBot) >= 0 && Integer.valueOf(navioBot) < 10) {
-                                navioBot = "0" + navioBot;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // POSICIONAR NAVIO HORIZONTAL
-        boolean encontrouPosicao = false;
-        if (orientacao.equals("H") || orientacao.equals("h")) {
-            while (!encontrouPosicao) {
-                for (int fileira = 0; fileira < 10; fileira++) {
-                    for (int coluna = 0; coluna < 10; coluna++) {
-                        String comparacao = matriz[fileira][coluna];
-                        if (n3.equals(comparacao)) {
-                            if (coluna + 1 < 10 && coluna - 1 > -1) {
-                                matriz[fileira][coluna] = "\u25A0" + "\u25A0";
-                                matriz[fileira][coluna - 1] = "\u25A0" + "\u25A0";
-                                matriz[fileira][coluna + 1] = "\u25A0" + "\u25A0";
-                                encontrouPosicao = true;
-                            } else {
-                                System.out.println("Posição sem espaço para o navio de tamanho 3.");
-                                System.out.print("Tente outra posição: ");
-                                n3 = scanner.nextLine();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        // POSICIONAR NAVIO VERTICAL
-        else {
-            while (!encontrouPosicao) {
-                for (int fileira = 0; fileira < 10; fileira++) {
-                    for (int coluna = 0; coluna < 10; coluna++) {
-                        String comparacao = matriz[fileira][coluna];
-                        if (n3.equals(comparacao)) {
-                            if (coluna + 1 < 10 && coluna - 1 > -1) {
-                                matriz[fileira][coluna] = "\u25A0" + "\u25A0";
-                                matriz[fileira - 1][coluna] = "\u25A0" + "\u25A0";
-                                matriz[fileira + 1][coluna] = "\u25A0" + "\u25A0";
-                                encontrouPosicao = true;
-                            } else {
-                                System.out.println("Posição sem espaço para o navio de tamanho 3.");
-                                System.out.print("Tente outra posição: ");
-                                n3 = scanner.nextLine();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+        
+        bot.colocarNavioBot(matrizBot);
+        
+        /*Quando se chama o metodo colocarNavio precisa colocar qual a orientação que o jogador quis,
+        qual a matriz onde será colocado o navio e em qual local ele será colocado */
+        
+        tabuleiro.colocarNavio(orientacao, matrizJogador, navio3);
+        
         //MOSTRAR CAMPOS
         System.out.println("=======CAMPO DO JOGADOR=======");
-        for (int i = 0; i < 10; i++) {
-            for (int ind = 0; ind < 10; ind++) {
-                System.out.print(" " + matriz[i][ind]);
-            }
-            System.out.println();
-            
-        }
+        tabuleiro.mostrarTabuleiro(matrizJogador);
+        
         System.out.println("");
         System.out.println("Navios Posicionados!");
         System.out.println("");
+        
+        /*agora não sabemos mais onde o bot coloca os navios dele, se quiser testar
+        da pra chamar o metodo mostrar tabuleiro pra matrizBot sem ser a visivel
+        dai vai ver onde ele colocou*/
+        
         System.out.println("=========CAMPO DO BOT=========");
-        for (int i = 0; i < 10; i++) {
-            for (int ind = 0; ind < 10; ind++) {
-                System.out.print(" " + matrizBot[i][ind]);
-            }
-            System.out.println();
-        }
+        tabuleiro.mostrarTabuleiro(matrizBotVisivel);
+        
         System.out.println("");
 
         //TIRO DO JOGADOR
         System.out.println("Vamos testar sua pontaria!");
         System.out.println("Digite o número do alvo! com dois digitos");
-        String TiroCompleto = scanner.nextLine();
-        String tiroL = String.valueOf(TiroCompleto.charAt(0));
-        String tiroC = String.valueOf(TiroCompleto.charAt(1));
-
-        if (("\u25A0" + "\u25A0").equals(matrizBot[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)])) {
-            System.out.println("KABUM! Você acertou um tiro!");
-            matrizBot[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "XX";
-        } else {
-            System.out.println("JOGADOR acertou à água");
-			matrizBot[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "~~";
-        }
-        //TIRO DO BOT
-        String tiroBotL = String.valueOf(random.nextInt(9));
-		String tiroBotC = String.valueOf(random.nextInt(9));
-		
-		if (("\u25A0" + "\u25A0").equals(matriz[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)])) {
-			System.out.println("BOT acertou um tiro");
-			matriz[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)] = "XX";
-		}
-		else {
-			System.out.println("BOT acertou à Água");
-			matriz[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)] = "~~";
-		}
+        String tiroCompleto = scanner.nextLine();
+        
+        /* pra chamar o metodo atirar você precisa colocar uma String de dois dígitos a 
+         matriz alvo do tiro e a matriz que vai receber a marcação, que é a do botVisivel*/
+        
+        jogador.atirar(tiroCompleto, matrizBot, matrizBotVisivel);
+        
+        /* O Tiro do bot tem que ser na matriz do jogador*/
+        
+        bot.tiroDoBot(matrizJogador);
 		
 		System.out.println("");
 		System.out.println("=======CAMPO DO JOGADOR=======");
 		System.out.println("");
-		for (int i = 0; i < 10; i++) {
-			for (int ind = 0; ind < 10; ind++) {
-				System.out.print(" " + matriz[i][ind]);
-			}
-			System.out.println();
-		}
+		tabuleiro.mostrarTabuleiro(matrizJogador);
 		System.out.println("");
 		System.out.println("=========CAMPO DO BOT=========");
 		System.out.println("");
-		for (int i = 0; i < 10; i++) {
-			for (int ind = 0; ind < 10; ind++) {
-				System.out.print(" " + matrizBot[i][ind]);
-			}
-			System.out.println();
-		}
+		tabuleiro.mostrarTabuleiro(matrizBotVisivel);
 
 
       
