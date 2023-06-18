@@ -10,3 +10,6 @@ falta:
 fazer um verificador pra garantir que o jogador colocou V ou H na orientação
 criar um laço pro jogo ficar repetindo os tiros até acabar os navios
 colocar dentro dos critérios de poliformismo, herança e encapsulamento
+
+✅ - fazer um verificador pra garantir que o jogador colocou V ou H na orientação
+OBS: Ainda precisa fazer ajustes do percurso de cada condição, determinadas condições não verificam posição e vice-versa [Doro]

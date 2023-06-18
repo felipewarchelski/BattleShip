@@ -33,17 +33,22 @@ public class Main {
         System.out.println("Bem Vindo ao Extreme BattleShip");
         System.out.println("Vamos iniciar a organização da sua frota");
         System.out.println();
-        
+
+        System.out.println("====POSICIONE SEUS NAVIOS!====");
         tabuleiro.mostrarTabuleiro(matrizJogador);
         
         //ESCOLHA POSIÇÃO E ORIENTAÇÃO DO NAVIO
         System.out.println();
         System.out.println("Escolha a orientação do navio(Vertical = [V] ou Horizontal = [H]):");
         String orientacao = scanner.nextLine();
+        while (!orientacao.equalsIgnoreCase("V") && !orientacao.equalsIgnoreCase("H")) {
+            System.out.println("Orientação incorreta!");
+            System.out.println("Escolha a orientação do navio(Vertical = [V] ou Horizontal = [H]):");
+            orientacao = scanner.nextLine();
+        }
         System.out.println("Digite a posição inicial do Navio de tamanho 3:");
         String navio3 = scanner.nextLine();
-        
-        tabuleiro.validarLocal(navio3);        
+        tabuleiro.validarLocal(navio3);
 
         //ESCOLHA POSIÇÃO BOT
         
