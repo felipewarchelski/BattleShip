@@ -1,6 +1,6 @@
 package br.com.unicuritiba.model;
 
-public class Jogador {
+public class Jogador extends Tabuleiro{
 
 	private String nome;
 	private int pontos;
@@ -31,19 +31,21 @@ public class Jogador {
 		pontos -= pontos;
 	}
 
-	public void atirar(String tiroCompleto, String[][] matrizComparada, String[][] matrizMarcada) {
+	public void atirar(String tiroCompleto,Bot matrizBot, Tabuleiro matrizBotVisivel) {
 
 		String tiroL = String.valueOf(tiroCompleto.charAt(0));
 		String tiroC = String.valueOf(tiroCompleto.charAt(1));
-		if (("\u25A0" + "\u25A0").equals(matrizComparada[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)])) {
+		// necessária uma maneira de verificar dentro da instancia matrizBot se os números batem e gravar
+		// dentro da instancia matrizBotVisivel
+		if (("\u25A0" + "\u25A0").equals(matrizBot.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)])) {
 			System.out.println("KABUM! Você acertou um tiro!");
-			matrizMarcada[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "XX";
+			matrizBotVisivel.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "XX";
 		} else {
 			System.out.println("JOGADOR acertou à água");
-			matrizMarcada[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "~~";
+			matrizBotVisivel.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "~~";
 		}
 	}
 
-	
-	
+
+
 }

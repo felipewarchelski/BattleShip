@@ -13,29 +13,21 @@ public class Main {
 
     	Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        String[][] matrizJogador = new String[10][10];
-    	String[][] matrizBot = new String [10][10];
-    	String[][] matrizBotVisivel = new String [10][10];
-    	Tabuleiro tabuleiro = new Tabuleiro();
-        Bot bot = new Bot(null);
+    	Bot matrizBot = new Bot();
+    	Tabuleiro matrizBotVisivel = new Tabuleiro();
         
     	System.out.println("Bem Vindo ao Extreme BattleShip");
     	System.out.println("Insira o nome de sua esquadra");
     	String nomeJogador = scanner.nextLine();
+    	Jogador matrizJogador = new Jogador(nomeJogador);
+       
     	
-    	Jogador jogador = new Jogador(nomeJogador);
-        
-        tabuleiro.construirTabuleiro(matrizJogador);
-        tabuleiro.construirTabuleiro(matrizBot);
-        tabuleiro.construirTabuleiro(matrizBotVisivel);
-        
         //MENSAGEM DE INICIO
-        System.out.println("Bem Vindo ao Extreme BattleShip");
         System.out.println("Vamos iniciar a organização da sua frota");
         System.out.println();
 
         System.out.println("====POSICIONE SEUS NAVIOS!====");
-        tabuleiro.mostrarTabuleiro(matrizJogador);
+        matrizJogador.mostrarTabuleiro();
         
         //ESCOLHA POSIÇÃO E ORIENTAÇÃO DO NAVIO
         System.out.println();
@@ -46,22 +38,23 @@ public class Main {
             System.out.println("Escolha a orientação do navio(Vertical = [V] ou Horizontal = [H]):");
             orientacao = scanner.nextLine();
         }
+        
         System.out.println("Digite a posição inicial do Navio de tamanho 3:");
         String navio3 = scanner.nextLine();
-        tabuleiro.validarLocal(navio3);
+        matrizJogador.validarLocal(navio3);
 
         //ESCOLHA POSIÇÃO BOT
         
-        bot.colocarNavioBot(matrizBot);
+        matrizBot.colocarNavioBot();
         
         /*Quando se chama o metodo colocarNavio precisa colocar qual a orientação que o jogador quis,
-        qual a matriz onde será colocado o navio e em qual local ele será colocado */
+        e em que local ele será colocado */
         
-        tabuleiro.colocarNavio(orientacao, matrizJogador, navio3);
+        matrizJogador.colocarNavio(orientacao, navio3);
         
         //MOSTRAR CAMPOS
         System.out.println("=======CAMPO DO JOGADOR=======");
-        tabuleiro.mostrarTabuleiro(matrizJogador);
+        matrizJogador.mostrarTabuleiro();
         
         System.out.println("");
         System.out.println("Navios Posicionados!");
@@ -72,7 +65,7 @@ public class Main {
         dai vai ver onde ele colocou*/
         
         System.out.println("=========CAMPO DO BOT=========");
-        tabuleiro.mostrarTabuleiro(matrizBotVisivel);
+        matrizBotVisivel.mostrarTabuleiro();
         
         System.out.println("");
 
@@ -84,22 +77,20 @@ public class Main {
         /* pra chamar o metodo atirar você precisa colocar uma String de dois dígitos a 
          matriz alvo do tiro e a matriz que vai receber a marcação, que é a do botVisivel*/
         
-        jogador.atirar(tiroCompleto, matrizBot, matrizBotVisivel);
+        matrizJogador.atirar(tiroCompleto, matrizBot, matrizBotVisivel);
         
         /* O Tiro do bot tem que ser na matriz do jogador*/
         
-        bot.tiroDoBot(matrizJogador);
+        matrizBot.tiroDoBot(matrizJogador);
 		
-		System.out.println("");
+        System.out.println("");
 		System.out.println("=======CAMPO DO JOGADOR=======");
 		System.out.println("");
-		tabuleiro.mostrarTabuleiro(matrizJogador);
+		matrizJogador.mostrarTabuleiro();
 		System.out.println("");
 		System.out.println("=========CAMPO DO BOT=========");
 		System.out.println("");
-		tabuleiro.mostrarTabuleiro(matrizBotVisivel);
-
-
+		matrizBotVisivel.mostrarTabuleiro();
       
         scanner.close();
     }
