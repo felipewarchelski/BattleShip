@@ -107,11 +107,9 @@ public class Tabuleiro {
 				System.out.println("Vamos testar sua pontaria!");
 				System.out.println("Digite o número do alvo! com dois digitos");
 				String tiroCompleto = scanTabuleiro.nextLine();
-
 				matrizJogador.atirar(tiroCompleto, matrizBot, matrizBotVisivel, matrizJogador);
-
 				matrizBot.tiroDoBot(matrizJogador);
-
+				
 				System.out.println("");
 				System.out.println("=======CAMPO DO JOGADOR=======");
 				System.out.println("");
