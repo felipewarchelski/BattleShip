@@ -5,13 +5,13 @@
 ##
 
 ⏳ - PENDÊNCIAS: 
-criar mais navios de tamanhos difererentes
-colocar dentro dos critérios de poliformismo, herança e encapsulamento
+Criar mais navios de tamanhos difererentes
+Colocar dentro dos critérios de poliformismo, herança e encapsulamento
 
 ##
 
 ❌ - ERROS/BUGS: 
-ao atirar um numero como: "04" "07"... ele está entendendo como 00.
+Ao atirar um numero como: "04" "07"... ele está entendendo como 00.
 
 ##
 
@@ -23,4 +23,6 @@ consertei a validação pra encerrar o jogo após o número de acertos, foi só 
 bot agora não atira duas vezes no mesmo lugar[Igor]
 corrigi o verificador de posição pois tanto pra horizontal quanto para vertical ele verificava os espaços horizontais apenas[Igor]
 corrigido possibilidade de digitos incorretos ao atirar[Doro]
+corrigido alguns avisos da IDE sofre parametros não utilizados[Doro]
+corrigido bug ("Ao atirar um numero como: "04" "07"... ele está entendendo como 00."), removi uma condição de adicionar um 0 caso o numero for menor que 10[Doro]
 

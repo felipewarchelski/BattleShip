@@ -62,9 +62,6 @@ public class Jogador extends Tabuleiro{
 				foraDaTabela = false;
 			}
 		}
-		if (Integer.valueOf(tiroCompleto) >= 0 && Integer.valueOf(tiroCompleto) < 10) {
-			tiroCompleto = "0" + tiroCompleto;
-		}
 		String tiroL = String.valueOf(tiroCompleto.charAt(0));
 		String tiroC = String.valueOf(tiroCompleto.charAt(1));
 		acertos.verificarDestruido(tiroCompleto, matrizBot);
