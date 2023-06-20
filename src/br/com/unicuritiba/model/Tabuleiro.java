@@ -36,7 +36,7 @@ public class Tabuleiro {
 		}
 		System.out.println("");
 	}
-
+	//POSICIONAR NAVIO HORIZONTAL
 	public void colocarNavio(String orientacao, String n3) {
 		boolean encontrouPosicao = false;
 		if (orientacao.equalsIgnoreCase("H")) {
@@ -101,6 +101,7 @@ public class Tabuleiro {
 	}
 
 	public boolean manterJogo(Jogador matrizJogador, Bot matrizBot, Tabuleiro matrizBotVisivel, boolean mantem) {
+		mantem = false;
 		while (!mantem) {
 			if (matrizJogador.getAcertos() < 3 && matrizBot.getAcertos() < 3) {
 				System.out.println("Vamos testar sua pontaria!");

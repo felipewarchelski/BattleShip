@@ -1,6 +1,6 @@
 package br.com.unicuritiba;
 
-import java.util.Random;
+// import java.util.Random;
 import java.util.Scanner;
 
 import br.com.unicuritiba.model.Bot;
@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
-		Random random = new Random();
+		// Random random = new Random();
 		Bot matrizBot = new Bot();
 		Tabuleiro matrizBotVisivel = new Tabuleiro();
 
@@ -46,10 +46,6 @@ public class Main {
 		//ESCOLHA POSIÇÃO BOT
 
 		matrizBot.colocarNavioBot();
-
-		/*Quando se chama o metodo colocarNavio precisa colocar qual a orientação que o jogador quis,
-        e em que local ele será colocado */
-
 		matrizJogador.colocarNavio(orientacao, navio3);
 
 		//MOSTRAR CAMPOS
@@ -66,7 +62,6 @@ public class Main {
 		System.out.println("");
 
 		//TIRO DO JOGADOR
-		boolean mantem = false;
 		matrizJogador.manterJogo(matrizJogador, matrizBot, matrizBotVisivel, false);
 
         if (matrizJogador.getAcertos() ==3){
