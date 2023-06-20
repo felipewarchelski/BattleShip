@@ -2,17 +2,16 @@ package br.com.unicuritiba.model;
 import java.util.Random;
 
 public class Bot extends Tabuleiro{
-	
+
 	private String nomeDoBot;
 	Random random = new Random();
-		
-		
+
 	public void colocarNavioBot() {
 		String posicaoNavioBot = String.valueOf(random.nextInt(99));
 		if (Integer.valueOf(posicaoNavioBot) >= 0 && Integer.valueOf(posicaoNavioBot) < 10) {
 			posicaoNavioBot = "0" + posicaoNavioBot;
 		}
-		
+
 		boolean encontrouPosicaoBot = false;
 		while (!encontrouPosicaoBot) {
 			for (int fileira = 0; fileira < 10; fileira++) {
@@ -37,9 +36,20 @@ public class Bot extends Tabuleiro{
 	}
 
 	public void tiroDoBot(Jogador matrizJogador) {
+
 		String tiroBotL = String.valueOf(random.nextInt(9));
 		String tiroBotC = String.valueOf(random.nextInt(9));
-		
+		boolean jaAtireiAqui = true;
+
+		while(jaAtireiAqui){
+			if (("~~").equals(matrizJogador.getTabuleiro()[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)])){
+				tiroBotL = String.valueOf(random.nextInt(9));
+				tiroBotC = String.valueOf(random.nextInt(9));
+			}else{
+				jaAtireiAqui = false;
+			}
+		}
+
 		if (("\u25A0" + "\u25A0").equals(matrizJogador.getTabuleiro()[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)])) {
 			System.out.println("BOT acertou um tiro");
 			matrizJogador.getTabuleiro()[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)] = "XX";
@@ -49,6 +59,6 @@ public class Bot extends Tabuleiro{
 			matrizJogador.getTabuleiro()[Integer.valueOf(tiroBotL)][Integer.valueOf(tiroBotC)] = "~~";
 		}
 	}
-	
-	
+
+
 }
