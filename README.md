@@ -11,7 +11,6 @@ Colocar dentro dos critérios de poliformismo, herança e encapsulamento
 ##
 
 ❌ - ERROS/BUGS: 
-Ao atirar um numero como: "04" "07"... ele está entendendo como 00.
 
 ##
 
