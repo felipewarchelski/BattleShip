@@ -53,7 +53,7 @@ public class Jogador extends Tabuleiro{
 	public void atirar(String tiroCompleto, Bot matrizBot, Tabuleiro matrizBotVisivel, Jogador acertos) {
 		boolean foraDaTabela = true;
 		while (foraDaTabela){
-			if ((Integer.valueOf(tiroCompleto) > 99 || (Integer.valueOf(tiroCompleto) < 0 ))){
+			if (!tiroCompleto.matches("\\d{2}")){
 				System.out.println("Você precisa digitar um número de dois digitos!");
 				System.out.println("Tente novamente: ");
 				tiroCompleto = scanTabuleiro.nextLine();

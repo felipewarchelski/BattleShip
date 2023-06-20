@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Bot extends Tabuleiro{
 
-	private String nomeDoBot;
+	// private String nomeDoBot;
 	Random random = new Random();
 
 	public void colocarNavioBot() {
