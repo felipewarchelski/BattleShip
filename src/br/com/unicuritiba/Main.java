@@ -25,7 +25,6 @@ public class Main {
 		//MENSAGEM DE INICIO
 		System.out.println("Vamos iniciar a organização da sua frota");
 		System.out.println();
-
 		System.out.println("====POSICIONE SEUS NAVIOS!====");
 		matrizJogador.mostrarTabuleiro();
 
@@ -38,13 +37,11 @@ public class Main {
 			System.out.println("Escolha a orientação do navio(Vertical = [V] ou Horizontal = [H]):");
 			orientacao = scanner.nextLine();
 		}
-
 		System.out.println("Digite a posição inicial do Navio de tamanho 3:");
 		String navio3 = scanner.nextLine();
 		navio3 = matrizJogador.validarLocal(navio3);
 
 		//ESCOLHA POSIÇÃO BOT
-
 		matrizBot.colocarNavioBot();
 		matrizJogador.colocarNavio(orientacao, navio3);
 
@@ -63,7 +60,6 @@ public class Main {
 
 		//TIRO DO JOGADOR
 		matrizJogador.manterJogo(matrizJogador, matrizBot, matrizBotVisivel, false);
-
         if (matrizJogador.getAcertos() ==3){
             System.out.println("Parabéns, você venceu!");
         }
