@@ -2,10 +2,10 @@ package br.com.unicuritiba.model;
 
 public class Navio {
 
-    private int tamanho[];
-    private boolean estado;
-    private String posicao;
-    
+	private int tamanho[];
+	private boolean estado;
+	private String posicao;
+
 	public Navio(int[] tamanho, boolean estado, String posicao) {
 		super();
 		this.tamanho = tamanho;
@@ -36,7 +36,7 @@ public class Navio {
 	public void setPosicao(String posicao) {
 		this.posicao = posicao;
 	}
-    
-    
+
+
 
 }

@@ -9,7 +9,6 @@ public class Jogador extends Tabuleiro{
 		this.pontos ++;
 	}
 
-	// \/ Esse é o construtor \/
 	public Jogador(String nome) {
 		this.nome = nome;
 		this.pontos = 100;
@@ -31,21 +30,55 @@ public class Jogador extends Tabuleiro{
 		pontos -= pontos;
 	}
 
-	public void atirar(String tiroCompleto,Bot matrizBot, Tabuleiro matrizBotVisivel) {
-
+	public boolean verificarDestruido(String tiroCompleto, Bot matrizBot){
+		boolean jaDestruiAqui = true;
 		String tiroL = String.valueOf(tiroCompleto.charAt(0));
 		String tiroC = String.valueOf(tiroCompleto.charAt(1));
-		// necessária uma maneira de verificar dentro da instancia matrizBot se os números batem e gravar
-		// dentro da instancia matrizBotVisivel
+
+		while(jaDestruiAqui){
+			if (("XX").equals(matrizBot.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)])){
+				System.out.println("Essa parte do navio já foi destruida!");
+				System.out.println("Escolha outro alvo: ");
+				tiroCompleto = scanTabuleiro.nextLine();
+				tiroL = String.valueOf(tiroCompleto.charAt(0));
+				tiroC = String.valueOf(tiroCompleto.charAt(1));
+
+			}else{
+				jaDestruiAqui = false;
+			}
+		}
+		return false;
+	}
+
+	public void atirar(String tiroCompleto, Bot matrizBot, Tabuleiro matrizBotVisivel, Jogador acertos) {
+		boolean foraDaTabela = true;
+		while (foraDaTabela){
+			if ((Integer.valueOf(tiroCompleto) > 99 || (Integer.valueOf(tiroCompleto) < 0 ))){
+				System.out.println("Você precisa digitar um número de dois digitos!");
+				System.out.println("Tente novamente: ");
+				tiroCompleto = scanTabuleiro.nextLine();
+			}
+			else {
+				foraDaTabela = false;
+			}
+		}
+		if (Integer.valueOf(tiroCompleto) >= 0 && Integer.valueOf(tiroCompleto) < 10) {
+			tiroCompleto = "0" + tiroCompleto;
+		}
+		String tiroL = String.valueOf(tiroCompleto.charAt(0));
+		String tiroC = String.valueOf(tiroCompleto.charAt(1));
+		acertos.verificarDestruido(tiroCompleto, matrizBot);
+
+		if (Integer.valueOf(tiroCompleto) >= 0 && Integer.valueOf(tiroCompleto) < 10) {
+			tiroCompleto = "0" + tiroCompleto;
+		}
 		if (("\u25A0" + "\u25A0").equals(matrizBot.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)])) {
 			System.out.println("KABUM! Você acertou um tiro!");
 			matrizBotVisivel.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "XX";
+			acertos.setAcertos();
 		} else {
 			System.out.println("JOGADOR acertou à água");
 			matrizBotVisivel.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "~~";
 		}
 	}
-
-
-
 }
