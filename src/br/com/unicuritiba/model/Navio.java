@@ -1,42 +1,34 @@
 package br.com.unicuritiba.model;
 
 public class Navio {
-
-	private int tamanho[];
-	private boolean estado;
-	private String posicao;
-
-	public Navio(int[] tamanho, boolean estado, String posicao) {
-		super();
-		this.tamanho = tamanho;
-		this.estado = estado;
-		this.posicao = posicao;
+	
+	private int tamanho;
+	private String orientacao;
+	private int posicao;
+	
+	public Navio(int tamanhoDoNavio) {
+		this.tamanho = tamanhoDoNavio;
+		
 	}
-
-	public int[] getTamanho() {
+	
+	public int getTamanho() {
 		return tamanho;
 	}
-
-	public void setTamanho(int[] tamanho) {
+	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
 	}
-
-	public boolean isEstado() {
-		return estado;
+	public String getOrientacao() {
+		return orientacao;
 	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setOrientacao(String orientacao) {
+		this.orientacao = orientacao;
 	}
-
-	public String getPosicao() {
+	public int getPosicao() {
 		return posicao;
 	}
-
-	public void setPosicao(String posicao) {
+	public void setPosicao(int posicao) {
 		this.posicao = posicao;
 	}
-
-
-
+	
+	
 }

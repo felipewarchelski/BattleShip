@@ -1,69 +1,81 @@
 package br.com.unicuritiba;
 
-// import java.util.Random;
 import java.util.Scanner;
 
 import br.com.unicuritiba.model.Bot;
 import br.com.unicuritiba.model.Jogador;
+import br.com.unicuritiba.model.Navio;
 import br.com.unicuritiba.model.Tabuleiro;
 
 public class Main {
 
 	public static void main(String[] args) {
 
+		Tabuleiro tabuleiroJogador = new Tabuleiro();
+		Tabuleiro tabuleiroBot = new Tabuleiro();
+		Tabuleiro tabuleiroBotVisivel = new Tabuleiro();
 		Scanner scanner = new Scanner(System.in);
-		// Random random = new Random();
-		Bot matrizBot = new Bot();
-		Tabuleiro matrizBotVisivel = new Tabuleiro();
+		Navio navio1 = new Navio(1);
+		Navio navio3 = new Navio(3);
+		Navio navio5 = new Navio(5);
 
-		System.out.println("Bem Vindo ao Extreme BattleShip");
-		System.out.println("Insira o nome de sua esquadra");
-		String nomeJogador = scanner.nextLine();
-		Jogador matrizJogador = new Jogador(nomeJogador);
+		System.out.println("Bem Vindo ao Battle Extreme");
+		System.out.println("Digite o nome do Jogador: ");
+		String apelido = scanner.nextLine();
+		Jogador jogador = new Jogador(apelido);
+		System.out.println("Digite o nome do Robo Adversário: ");
+		String apelidoDoRobo = scanner.nextLine();
+		Bot roboAdversario = new Bot(apelidoDoRobo);
+		System.out.println("Batalha declarada "+jogador.getNome()+" vs "+roboAdversario.getNome());
 
+		//imprimir o tabuleiro na tela
+		System.out.println("");
+		System.out.println("=========Campo Jogador=========");
+		tabuleiroJogador.mostrarTabuleiro();
 
-		//MENSAGEM DE INICIO
-		System.out.println("Vamos iniciar a organização da sua frota");
-		System.out.println();
-		System.out.println("====POSICIONE SEUS NAVIOS!====");
-		matrizJogador.mostrarTabuleiro();
+		int contadorDeNavios = 0;
+		while (contadorDeNavios < 9) {
 
-		//ESCOLHA POSIÇÃO E ORIENTAÇÃO DO NAVIO
-		System.out.println();
-		System.out.println("Escolha a orientação do navio(Vertical = [V] ou Horizontal = [H]):");
-		String orientacao = scanner.nextLine();
-		while (!orientacao.equalsIgnoreCase("V") && !orientacao.equalsIgnoreCase("H")) {
-			System.out.println("Orientação incorreta!");
-			System.out.println("Escolha a orientação do navio(Vertical = [V] ou Horizontal = [H]):");
-			orientacao = scanner.nextLine();
+			tabuleiroJogador.preencherTabuleiro(tabuleiroJogador, navio1);
+			tabuleiroJogador.preencherTabuleiro(tabuleiroJogador, navio3);
+			tabuleiroJogador.preencherTabuleiro(tabuleiroJogador, navio5);
+
+			for(int fileira = 0; fileira <10; fileira++) {
+				for(int coluna =0; coluna <10; coluna++) {
+					String validarNV = tabuleiroJogador.getItemTabuleiro(fileira, coluna);
+					if(validarNV.equals("NV")) {
+						contadorDeNavios++;
+					}
+				}
+			}
+			if(contadorDeNavios < 9) {
+				contadorDeNavios = 0;
+				for(int fileira = 0; fileira <10; fileira++) {
+					for(int coluna =0; coluna <10; coluna++) {
+						String zerarNV = String.valueOf(fileira) + String.valueOf(coluna);
+						tabuleiroJogador.setTabuleiro(fileira, coluna, zerarNV);
+					}
+				}
+				System.out.println("Contamos seus navios e ta tudo errado, arruma essas posições ae rapá!");
+				tabuleiroJogador.mostrarTabuleiro();
+			}
+			else {
+				System.out.println("Verificamos sua frota e está tudo certo com as posições!");
+			}
 		}
-		System.out.println("Digite a posição inicial do Navio de tamanho 3:");
-		String navio3 = scanner.nextLine();
-		navio3 = matrizJogador.validarLocal(navio3);
+		
+		roboAdversario.contarNavioBot(tabuleiroBot, roboAdversario);
 
-		//ESCOLHA POSIÇÃO BOT
-		matrizBot.colocarNavioBot();
-		matrizJogador.colocarNavio(orientacao, navio3);
-
-		//MOSTRAR CAMPOS
-		System.out.println("=======CAMPO DO JOGADOR=======");
-		matrizJogador.mostrarTabuleiro();
-
-		System.out.println("");
-		System.out.println("Navios Posicionados!");
-		System.out.println("");
-
-		System.out.println("=========CAMPO DO BOT=========");
-		matrizBotVisivel.mostrarTabuleiro();
-
-		System.out.println("");
-
-		//TIRO DO JOGADOR
-		matrizJogador.manterJogo(matrizJogador, matrizBot, matrizBotVisivel, false);
-        if (matrizJogador.getAcertos() ==3){
-            System.out.println("Parabéns, você venceu!");
-        }
-
+		//jogo em si
+		tabuleiroJogador.manterJogo(tabuleiroJogador, tabuleiroBotVisivel, tabuleiroBot, jogador, roboAdversario);
+		
+		if(jogador.getAcertos()>=9) {
+			System.out.println("Você ganhou com "+ jogador.getPontos()+ " pontos!");
+		}
+		else if(roboAdversario.getAcertos()>=9) {
+			System.out.println(roboAdversario.getNome() +" humilhou você "+ jogador.getPontos()+"!");
+		}
+		
 		scanner.close();
 	}
 }

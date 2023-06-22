@@ -1,81 +1,68 @@
 package br.com.unicuritiba.model;
 
-public class Jogador extends Tabuleiro{
+import java.util.Scanner;
 
-	private String nome;
-	private int pontos;
-
-	public void Pontuar() {
-		this.pontos ++;
-	}
-
-	public Jogador(String nome) {
+public class Jogador {
+	
+	Scanner scanner = new Scanner(System.in);
+	
+	protected String nome;
+	protected int acertos;
+	protected int pontos;
+	
+	public Jogador(String nome){
 		this.nome = nome;
+		this.acertos = 0;
 		this.pontos = 100;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	public int getAcertos() {
+		return acertos;
+	}
+	public void setAcertos() {
+		acertos++;
+	}
 	public int getPontos() {
 		return pontos;
 	}
-
 	public void diminuirPontos() {
-		pontos -= pontos;
+		pontos--;
 	}
-
-	public boolean verificarDestruido(String tiroCompleto, Bot matrizBot){
-		boolean jaDestruiAqui = true;
-		String tiroL = String.valueOf(tiroCompleto.charAt(0));
-		String tiroC = String.valueOf(tiroCompleto.charAt(1));
-
-		while(jaDestruiAqui){
-			if (("XX").equals(matrizBot.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)])){
-				System.out.println("Essa parte do navio já foi destruida!");
-				System.out.println("Escolha outro alvo: ");
-				tiroCompleto = scanTabuleiro.nextLine();
-				tiroL = String.valueOf(tiroCompleto.charAt(0));
-				tiroC = String.valueOf(tiroCompleto.charAt(1));
-
-			}else{
-				jaDestruiAqui = false;
-			}
-		}
-		return false;
-	}
-
-	public void atirar(String tiroCompleto, Bot matrizBot, Tabuleiro matrizBotVisivel, Jogador acertos) {
+	
+	public void atirar(String tiroCompleto, Tabuleiro matrizBot, Tabuleiro matrizBotVisivel, Jogador jogador) {
 		boolean foraDaTabela = true;
 		while (foraDaTabela){
 			if (!tiroCompleto.matches("\\d{2}")){
 				System.out.println("Você precisa digitar um número de dois digitos!");
 				System.out.println("Tente novamente: ");
-				tiroCompleto = scanTabuleiro.nextLine();
+				tiroCompleto = scanner.nextLine();
 			}
 			else {
 				foraDaTabela = false;
 			}
 		}
-		String tiroL = String.valueOf(tiroCompleto.charAt(0));
-		String tiroC = String.valueOf(tiroCompleto.charAt(1));
-		acertos.verificarDestruido(tiroCompleto, matrizBot);
-
-		if (Integer.valueOf(tiroCompleto) >= 0 && Integer.valueOf(tiroCompleto) < 10) {
-			tiroCompleto = "0" + tiroCompleto;
-		}
-		if (("\u25A0" + "\u25A0").equals(matrizBot.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)])) {
+		int tiroL = Character.getNumericValue(tiroCompleto.charAt(0));
+		int tiroC = Character.getNumericValue(tiroCompleto.charAt(1));
+		tiroCompleto = matrizBot.verificarDestruido(tiroCompleto, matrizBot);
+		tiroL = Character.getNumericValue(tiroCompleto.charAt(0));
+		tiroC = Character.getNumericValue(tiroCompleto.charAt(1));
+		
+		if (("NV").equals(matrizBot.getItemTabuleiro(tiroL,tiroC))) {
 			System.out.println("KABUM! Você acertou um tiro!");
-			matrizBotVisivel.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "XX";
-			acertos.setAcertos();
+			matrizBotVisivel.setTabuleiro(tiroL, tiroC, "XX");
+			jogador.setAcertos();
+
 		} else {
 			System.out.println("JOGADOR acertou à água");
-			matrizBotVisivel.getTabuleiro()[Integer.valueOf(tiroL)][Integer.valueOf(tiroC)] = "~~";
+			matrizBotVisivel.setTabuleiro(tiroL,tiroC, "~~");
+			jogador.diminuirPontos();
 		}
 	}
+
 }
