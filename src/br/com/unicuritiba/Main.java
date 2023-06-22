@@ -43,7 +43,7 @@ public class Main {
 			for(int fileira = 0; fileira <10; fileira++) {
 				for(int coluna =0; coluna <10; coluna++) {
 					String validarNV = tabuleiroJogador.getItemTabuleiro(fileira, coluna);
-					if(validarNV.equals("NV")) {
+					if(validarNV.equals("\u25A0" + "\u25A0")) {
 						contadorDeNavios++;
 					}
 				}
@@ -66,15 +66,18 @@ public class Main {
 		
 		roboAdversario.contarNavioBot(tabuleiroBot, roboAdversario);
 
-		//jogo em si
+		//RESULTADO
+		tabuleiroBot.mostrarTabuleiro();
 		tabuleiroJogador.manterJogo(tabuleiroJogador, tabuleiroBotVisivel, tabuleiroBot, jogador, roboAdversario);
 		
 		if(jogador.getAcertos()>=9) {
 			System.out.println("Você ganhou com "+ jogador.getPontos()+ " pontos!");
 		}
 		else if(roboAdversario.getAcertos()>=9) {
-			System.out.println(roboAdversario.getNome() +" humilhou você "+ jogador.getPontos()+"!");
+			System.out.println(roboAdversario.getNome() +" humilhou " + jogador.getNome() + "!" + "\n" + "Você perdeu com "+ jogador.getPontos()+"!");
 		}
+
+		tabuleiroBotVisivel.mostrarTabuleiro();
 		
 		scanner.close();
 	}

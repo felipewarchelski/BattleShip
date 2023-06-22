@@ -31,9 +31,9 @@ public class Bot extends Jogador{
 					String comparacao = tabuleiroBot.getItemTabuleiro(fileira, coluna);
 					if (posicaoNavioBot.equals(comparacao)) {
 						if (coluna + 1 < 10 && coluna - 1 > -1) {
-							tabuleiroBot.setTabuleiro(fileira, coluna, "NV");
-							tabuleiroBot.setTabuleiro(fileira, coluna-1, "NV");
-							tabuleiroBot.setTabuleiro(fileira, coluna+1, "NV");
+							tabuleiroBot.setTabuleiro(fileira, coluna, "\u25A0" + "\u25A0");
+							tabuleiroBot.setTabuleiro(fileira, coluna-1, "\u25A0" + "\u25A0");
+							tabuleiroBot.setTabuleiro(fileira, coluna+1, "\u25A0" + "\u25A0");
 							encontrouPosicaoBot = true;
 						} else {
 							posicaoNavioBot = String.valueOf(random.nextInt(99));
@@ -59,11 +59,11 @@ public class Bot extends Jogador{
 					String comparacao = tabuleiroBot.getItemTabuleiro(fileira, coluna);
 					if (posicaoNavioBot.equals(comparacao)) {
 						if (coluna + 2 < 10 && coluna - 2 > -1) {
-							tabuleiroBot.setTabuleiro(fileira, coluna, "NV");
-							tabuleiroBot.setTabuleiro(fileira, coluna-1, "NV");
-							tabuleiroBot.setTabuleiro(fileira, coluna-2, "NV");
-							tabuleiroBot.setTabuleiro(fileira, coluna+1, "NV");
-							tabuleiroBot.setTabuleiro(fileira, coluna+2, "NV");
+							tabuleiroBot.setTabuleiro(fileira, coluna, "\u25A0" + "\u25A0");
+							tabuleiroBot.setTabuleiro(fileira, coluna-1, "\u25A0" + "\u25A0");
+							tabuleiroBot.setTabuleiro(fileira, coluna-2, "\u25A0" + "\u25A0");
+							tabuleiroBot.setTabuleiro(fileira, coluna+1, "\u25A0" + "\u25A0");
+							tabuleiroBot.setTabuleiro(fileira, coluna+2, "\u25A0" + "\u25A0");
 							encontrouPosicaoBot = true;
 						} else {
 							posicaoNavioBot = String.valueOf(random.nextInt(99));
@@ -89,7 +89,7 @@ public class Bot extends Jogador{
 					String comparacao = tabuleiroBot.getItemTabuleiro(fileira, coluna);
 					if (posicaoNavioBot.equals(comparacao)) {
 						if (coluna < 10 && coluna > -1) {
-							tabuleiroBot.setTabuleiro(fileira, coluna, "NV");
+							tabuleiroBot.setTabuleiro(fileira, coluna, "\u25A0" + "\u25A0");
 							encontrouPosicaoBot = true;
 						} else {
 							posicaoNavioBot = String.valueOf(random.nextInt(99));
@@ -114,7 +114,7 @@ public class Bot extends Jogador{
 			for(int fileira = 0; fileira <10; fileira++) {
 				for(int coluna =0; coluna <10; coluna++) {
 					String validarNVBot = tabuleiroBot.getItemTabuleiro(fileira, coluna);
-					if(validarNVBot.equals("NV")) {
+					if(validarNVBot.equals("\u25A0" + "\u25A0")) {
 						contadorDeNaviosBot++;
 					}
 				}
@@ -152,7 +152,7 @@ public class Bot extends Jogador{
 			}
 		}
 
-		if (("NV").equals(tabuleiroJogador.getItemTabuleiro(tiroBotL,tiroBotC))) {
+		if (("\u25A0" + "\u25A0").equals(tabuleiroJogador.getItemTabuleiro(tiroBotL,tiroBotC))) {
 			System.out.println("BOT acertou um tiro");
 			tabuleiroJogador.setTabuleiro(tiroBotL, tiroBotC, "XX");
 			bot.setAcertos();

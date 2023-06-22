@@ -53,7 +53,7 @@ public class Jogador {
 		tiroL = Character.getNumericValue(tiroCompleto.charAt(0));
 		tiroC = Character.getNumericValue(tiroCompleto.charAt(1));
 		
-		if (("NV").equals(matrizBot.getItemTabuleiro(tiroL,tiroC))) {
+		if (("\u25A0" + "\u25A0").equals(matrizBot.getItemTabuleiro(tiroL,tiroC))) {
 			System.out.println("KABUM! Você acertou um tiro!");
 			matrizBotVisivel.setTabuleiro(tiroL, tiroC, "XX");
 			jogador.setAcertos();

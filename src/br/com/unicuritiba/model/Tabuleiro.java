@@ -45,7 +45,7 @@ public class Tabuleiro {
 	public String validarDoisDigitos(String navio) {
 		while (!navio.matches("\\d{2}")) {
 			System.out.println("Valor Inválido");
-			System.out.println("Digite a posição inicial do Navio de tamanho");
+			System.out.println("Digite a posição inicial do Navio");
 			navio = scanner.nextLine();
 		}
 		return navio;
@@ -108,7 +108,7 @@ public class Tabuleiro {
 
 		if (navio.getOrientacao().equalsIgnoreCase("H")) {
 			System.out.println("");
-			System.out.println("Escolha uma posição para seu navio de tamanho de tamanho " +navio.getTamanho());
+			System.out.println("Escolha uma posição para seu navio de tamanho " +navio.getTamanho());
 			String posicao = scanner.nextLine();
 			posicao = tabuleiroJogador.validarDoisDigitos(posicao);
 			posicao = tabuleiroJogador.verificarSeCabeH(posicao, navio, tabuleiroJogador);
@@ -116,7 +116,7 @@ public class Tabuleiro {
 			char posicao2 = posicao.charAt(1);
 
 			for (int indice = 0; indice < navio.getTamanho(); indice++) {
-				tabuleiroJogador.setTabuleiro(Character.getNumericValue(posicao1), (indice+(Character.getNumericValue(posicao2)-(navio.getTamanho()/2))), "NV");
+				tabuleiroJogador.setTabuleiro(Character.getNumericValue(posicao1), (indice+(Character.getNumericValue(posicao2)-(navio.getTamanho()/2))), "\u25A0" + "\u25A0");
 
 			}
 			tabuleiroJogador.mostrarTabuleiro();
@@ -131,7 +131,7 @@ public class Tabuleiro {
 			char posicao2 = posicao.charAt(1);
 
 			for (int indice = 0; indice < navio.getTamanho(); indice++) {
-				tabuleiroJogador.setTabuleiro(Character.getNumericValue(posicao1)+indice-(navio.getTamanho()/2), (Character.getNumericValue(posicao2)), "NV");
+				tabuleiroJogador.setTabuleiro(Character.getNumericValue(posicao1)+indice-(navio.getTamanho()/2), (Character.getNumericValue(posicao2)), "\u25A0" + "\u25A0");
 
 			}
 			tabuleiroJogador.mostrarTabuleiro();
