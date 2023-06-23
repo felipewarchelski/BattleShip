@@ -179,6 +179,12 @@ public class Tabuleiro {
 			else {
 				mantem = false;
 			}
+			if(roboAdversario.getAcertos()==5) {
+				roboAdversario.intimidar(roboAdversario, jogador);
+			}
+			if(jogador.getAcertos()==5) {
+				roboAdversario.intimidar(jogador, roboAdversario);
+			}	
 		}
 	}
 }

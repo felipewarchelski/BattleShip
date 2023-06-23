@@ -69,15 +69,17 @@ public class Main {
 		//RESULTADO
 		tabuleiroBot.mostrarTabuleiro();
 		tabuleiroJogador.manterJogo(tabuleiroJogador, tabuleiroBotVisivel, tabuleiroBot, jogador, roboAdversario);
+		tabuleiroBotVisivel.mostrarTabuleiro();
 		
 		if(jogador.getAcertos()>=9) {
-			System.out.println("Você ganhou com "+ jogador.getPontos()+ " pontos!");
+			System.out.println(jogador.getNome()+ " ganhou com "+ jogador.getPontos()+ " pontos!");
 		}
 		else if(roboAdversario.getAcertos()>=9) {
-			System.out.println(roboAdversario.getNome() +" humilhou " + jogador.getNome() + "!" + "\n" + "Você perdeu com "+ jogador.getPontos()+"!");
+			System.out.println(roboAdversario.getNome() +" humilhou " + jogador.getNome() + "!" + "\n" + "Você perdeu!");
 		}
-
-		tabuleiroBotVisivel.mostrarTabuleiro();
+		else {
+			System.out.println("Se esse erro foi encontrado infelizmente há falhas no código");
+		}
 		
 		scanner.close();
 	}

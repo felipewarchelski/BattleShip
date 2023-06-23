@@ -2,37 +2,11 @@ package br.com.unicuritiba.model;
 
 import java.util.Scanner;
 
-public class Jogador {
-	
-	Scanner scanner = new Scanner(System.in);
-	
-	protected String nome;
-	protected int acertos;
-	protected int pontos;
-	
-	public Jogador(String nome){
-		this.nome = nome;
-		this.acertos = 0;
-		this.pontos = 100;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public int getAcertos() {
-		return acertos;
-	}
-	public void setAcertos() {
-		acertos++;
-	}
-	public int getPontos() {
-		return pontos;
-	}
-	public void diminuirPontos() {
-		pontos--;
+public class Jogador extends Participante{
+
+	public Jogador(String nome) {
+		super(nome);
+		
 	}
 	
 	public void atirar(String tiroCompleto, Tabuleiro matrizBot, Tabuleiro matrizBotVisivel, Jogador jogador) {
@@ -56,6 +30,7 @@ public class Jogador {
 		if (("\u25A0" + "\u25A0").equals(matrizBot.getItemTabuleiro(tiroL,tiroC))) {
 			System.out.println("KABUM! Você acertou um tiro!");
 			matrizBotVisivel.setTabuleiro(tiroL, tiroC, "XX");
+			matrizBot.setTabuleiro(tiroL, tiroC, "XX");
 			jogador.setAcertos();
 
 		} else {
@@ -64,5 +39,16 @@ public class Jogador {
 			jogador.diminuirPontos();
 		}
 	}
+
+	
+	@Override
+	public void intimidar(Participante ameacador, Participante ameacado) {
+		System.out.println("");
+		System.out.println(ameacador.getNome() + " grita: ");
+		System.out.println(ameacado.getNome() + "vai dormir com os camarões hoje!");
+		System.out.println("");
+	}
+	
+	
 
 }
