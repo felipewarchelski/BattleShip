@@ -6,7 +6,6 @@
 
 ⏳ - PENDÊNCIAS: 
 
-Colocar dentro dos critérios de polimorfismo, herança e encapsulamento
 
 ##
 

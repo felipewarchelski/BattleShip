@@ -2,7 +2,7 @@ package br.com.unicuritiba.model;
 
 import java.util.Random;
 
-public class Bot extends Jogador{
+public class Bot extends Participante{
 
 	Random random = new Random();
 
@@ -139,14 +139,14 @@ public class Bot extends Jogador{
 	
 	public void tiroDoBot(Tabuleiro tabuleiroJogador, Bot bot) {
 
-		int tiroBotL = random.nextInt(9);
-		int tiroBotC = random.nextInt(9);
+		int tiroBotL = random.nextInt(10);
+		int tiroBotC = random.nextInt(10);
 		boolean jaAtireiAqui = true;
 
 		while(jaAtireiAqui){
 			if (("~~").equals(tabuleiroJogador.getItemTabuleiro(tiroBotL,tiroBotC)) || ("XX").equals(tabuleiroJogador.getItemTabuleiro(tiroBotL,tiroBotC))){
-				tiroBotL = random.nextInt(9);
-				tiroBotC = random.nextInt(9);
+				tiroBotL = random.nextInt(10);
+				tiroBotC = random.nextInt(10);
 			}else{
 				jaAtireiAqui = false;
 			}
@@ -162,4 +162,12 @@ public class Bot extends Jogador{
 			tabuleiroJogador.setTabuleiro(tiroBotL,tiroBotC,"~~");
 		}
 	}
+
+
+	@Override
+	public void intimidar(Participante ameacador, Participante ameacado) {
+		System.out.println(ameacador.getNome() + " grita: ");
+		System.out.println("Destruirei todos seus navios "+ameacado.getNome()+"!");
+	}
+
 }
