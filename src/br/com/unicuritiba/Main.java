@@ -74,10 +74,10 @@ public class Main {
 			System.out.println("Você ganhou com "+ jogador.getPontos()+ " pontos!");
 		}
 		else if(roboAdversario.getAcertos()>=9) {
-			System.out.println(roboAdversario.getNome() +" humilhou " + jogador.getNome() + "!" + "\n" + "Você perdeu com "+ jogador.getPontos()+"!");
+			System.out.println(roboAdversario.getNome() +" humilhou " + jogador.getNome() + "!" + "\n" + "Você perdeu com "+ jogador.getPontos()+" pontos!");
 		}
 
-		tabuleiroBotVisivel.mostrarTabuleiro();
+		tabuleiroBot.mostrarTabuleiro();
 		
 		scanner.close();
 	}
