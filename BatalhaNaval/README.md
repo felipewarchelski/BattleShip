@@ -1,1 +1,18 @@
-Lembrem-se de anotar qualquer direcionamento da confecção do software aqui
+### Olá Colaborador! 👋
+
+📣 - UTILIZE ESSE README PARA FAZER ANOTAÇÕES DE CONFECÇÃO DO SOFTWARE:
+
+##
+
+⏳ - PENDÊNCIAS: 
+
+
+##
+
+❌ - ERROS/BUGS: 
+
+##
+
+💬 - ATUALIZAÇÕES/ANOTAÇÕES: 
+
+
