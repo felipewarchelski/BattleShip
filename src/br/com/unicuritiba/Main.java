@@ -18,6 +18,8 @@ public class Main {
 		Navio navio1 = new Navio(1);
 		Navio navio3 = new Navio(3);
 		Navio navio5 = new Navio(5);
+		Navio navio32 = new Navio(3);
+		Navio navio52 = new Navio(5);
 
 		System.out.println("Bem Vindo ao Battle Extreme");
 		System.out.println("Digite o nome do Jogador: ");
@@ -34,11 +36,13 @@ public class Main {
 		tabuleiroJogador.mostrarTabuleiro();
 
 		int contadorDeNavios = 0;
-		while (contadorDeNavios < 9) {
+		while (contadorDeNavios < 17) {
 
 			tabuleiroJogador.preencherTabuleiro(tabuleiroJogador, navio1);
 			tabuleiroJogador.preencherTabuleiro(tabuleiroJogador, navio3);
 			tabuleiroJogador.preencherTabuleiro(tabuleiroJogador, navio5);
+			tabuleiroJogador.preencherTabuleiro(tabuleiroJogador, navio32);
+			tabuleiroJogador.preencherTabuleiro(tabuleiroJogador, navio52);
 
 			for(int fileira = 0; fileira <10; fileira++) {
 				for(int coluna =0; coluna <10; coluna++) {
@@ -48,7 +52,7 @@ public class Main {
 					}
 				}
 			}
-			if(contadorDeNavios < 9) {
+			if(contadorDeNavios < 17) {
 				contadorDeNavios = 0;
 				for(int fileira = 0; fileira <10; fileira++) {
 					for(int coluna =0; coluna <10; coluna++) {
@@ -66,16 +70,23 @@ public class Main {
 		
 		roboAdversario.contarNavioBot(tabuleiroBot, roboAdversario);
 
-		//RESULTADO
+		//tire o barrabarra da linha 71 para verificar o tabuleiro do bot quando o jogo iniciar
+		
 		tabuleiroBot.mostrarTabuleiro();
+		
 		tabuleiroJogador.manterJogo(tabuleiroJogador, tabuleiroBotVisivel, tabuleiroBot, jogador, roboAdversario);
+		System.out.println("===========Campo Bot===========");
 		tabuleiroBotVisivel.mostrarTabuleiro();
 		
-		if(jogador.getAcertos()>=9) {
+		if(jogador.getAcertos()>=17) {
+			System.out.println("===============================");
 			System.out.println(jogador.getNome()+ " ganhou com "+ jogador.getPontos()+ " pontos!");
+			System.out.println("===============================");
 		}
-		else if(roboAdversario.getAcertos()>=9) {
+		else if(roboAdversario.getAcertos()>=17) {
+			System.out.println("===============================");
 			System.out.println(roboAdversario.getNome() +" humilhou " + jogador.getNome() + "!" + "\n" + "Você perdeu!");
+			System.out.println("===============================");
 		}
 		else {
 			System.out.println("Se esse erro foi encontrado infelizmente há falhas no código");

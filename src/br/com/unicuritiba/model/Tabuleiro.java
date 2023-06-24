@@ -161,7 +161,7 @@ public class Tabuleiro {
 	public void manterJogo(Tabuleiro tabuleiroJogador, Tabuleiro tabuleiroBotVisivel, Tabuleiro tabuleiroBot, Jogador jogador, Bot roboAdversario) {
 		boolean mantem = true;
 		while(mantem){
-			if(jogador.getAcertos() < 9 && roboAdversario.getAcertos() < 9) {
+			if(jogador.getAcertos() < 17 && roboAdversario.getAcertos() < 17) {
 				System.out.println("========Campo do Jogador========");
 				System.out.println("");
 				tabuleiroJogador.mostrarTabuleiro();
@@ -179,10 +179,10 @@ public class Tabuleiro {
 			else {
 				mantem = false;
 			}
-			if(roboAdversario.getAcertos()==5) {
+			if(roboAdversario.getAcertos()==8) {
 				roboAdversario.intimidar(roboAdversario, jogador);
 			}
-			if(jogador.getAcertos()==5) {
+			if(jogador.getAcertos()==8) {
 				roboAdversario.intimidar(jogador, roboAdversario);
 			}	
 		}

@@ -3,10 +3,20 @@ package br.com.unicuritiba.model;
 import java.util.Scanner;
 
 public class Jogador extends Participante{
-
+	
+	protected int pontos;
+	
 	public Jogador(String nome) {
 		super(nome);
-		
+		this.pontos = 100;
+	}
+	
+	public int getPontos() {
+		return pontos;
+	}
+	
+	public void diminuirPontos() {
+		pontos--;
 	}
 	
 	public void atirar(String tiroCompleto, Tabuleiro matrizBot, Tabuleiro matrizBotVisivel, Jogador jogador) {
@@ -40,15 +50,12 @@ public class Jogador extends Participante{
 		}
 	}
 
-	
 	@Override
 	public void intimidar(Participante ameacador, Participante ameacado) {
 		System.out.println("");
 		System.out.println(ameacador.getNome() + " grita: ");
-		System.out.println(ameacado.getNome() + "vai dormir com os camarões hoje!");
+		System.out.println("- " + ameacado.getNome() + "vai dormir com os camarões hoje!");
 		System.out.println("");
 	}
 	
-	
-
 }

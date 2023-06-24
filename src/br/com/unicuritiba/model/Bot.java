@@ -20,7 +20,7 @@ public class Bot extends Participante{
 
 	public void colocarNavioBot3(Tabuleiro tabuleiroBot) {
 
-		String posicaoNavioBot = String.valueOf(random.nextInt(99));
+		String posicaoNavioBot = String.valueOf(random.nextInt(100));
 		if (Integer.valueOf(posicaoNavioBot) >= 0 && Integer.valueOf(posicaoNavioBot) < 10) {
 			posicaoNavioBot = "0" + posicaoNavioBot;
 		}
@@ -36,7 +36,7 @@ public class Bot extends Participante{
 							tabuleiroBot.setTabuleiro(fileira, coluna+1, "\u25A0" + "\u25A0");
 							encontrouPosicaoBot = true;
 						} else {
-							posicaoNavioBot = String.valueOf(random.nextInt(99));
+							posicaoNavioBot = String.valueOf(random.nextInt(100));
 							if (Integer.valueOf(posicaoNavioBot) >= 0 && Integer.valueOf(posicaoNavioBot) < 10) {
 								posicaoNavioBot = "0" + posicaoNavioBot;
 							}
@@ -48,7 +48,7 @@ public class Bot extends Participante{
 	}
 	public void colocarNavioBot5(Tabuleiro tabuleiroBot) {
 
-		String posicaoNavioBot = String.valueOf(random.nextInt(99));
+		String posicaoNavioBot = String.valueOf(random.nextInt(100));
 		if (Integer.valueOf(posicaoNavioBot) >= 0 && Integer.valueOf(posicaoNavioBot) < 10) {
 			posicaoNavioBot = "0" + posicaoNavioBot;
 		}
@@ -66,7 +66,7 @@ public class Bot extends Participante{
 							tabuleiroBot.setTabuleiro(fileira, coluna+2, "\u25A0" + "\u25A0");
 							encontrouPosicaoBot = true;
 						} else {
-							posicaoNavioBot = String.valueOf(random.nextInt(99));
+							posicaoNavioBot = String.valueOf(random.nextInt(100));
 							if (Integer.valueOf(posicaoNavioBot) >= 0 && Integer.valueOf(posicaoNavioBot) < 10) {
 								posicaoNavioBot = "0" + posicaoNavioBot;
 							}
@@ -78,7 +78,7 @@ public class Bot extends Participante{
 	}
 	public void colocarNavioBot1(Tabuleiro tabuleiroBot) {
 
-		String posicaoNavioBot = String.valueOf(random.nextInt(99));
+		String posicaoNavioBot = String.valueOf(random.nextInt(100));
 		if (Integer.valueOf(posicaoNavioBot) >= 0 && Integer.valueOf(posicaoNavioBot) < 10) {
 			posicaoNavioBot = "0" + posicaoNavioBot;
 		}
@@ -92,7 +92,7 @@ public class Bot extends Participante{
 							tabuleiroBot.setTabuleiro(fileira, coluna, "\u25A0" + "\u25A0");
 							encontrouPosicaoBot = true;
 						} else {
-							posicaoNavioBot = String.valueOf(random.nextInt(99));
+							posicaoNavioBot = String.valueOf(random.nextInt(100));
 							if (Integer.valueOf(posicaoNavioBot) >= 0 && Integer.valueOf(posicaoNavioBot) < 10) {
 								posicaoNavioBot = "0" + posicaoNavioBot;
 							}
@@ -105,9 +105,11 @@ public class Bot extends Participante{
 	
 	public void contarNavioBot(Tabuleiro tabuleiroBot, Bot bot){
 		int contadorDeNaviosBot = 0;
-		while (contadorDeNaviosBot < 9) {
+		while (contadorDeNaviosBot < 17) {
 
 			bot.colocarNavioBot1(tabuleiroBot);
+			bot.colocarNavioBot3(tabuleiroBot);
+			bot.colocarNavioBot5(tabuleiroBot);
 			bot.colocarNavioBot3(tabuleiroBot);
 			bot.colocarNavioBot5(tabuleiroBot);
 
@@ -119,7 +121,7 @@ public class Bot extends Participante{
 					}
 				}
 			}
-			if(contadorDeNaviosBot < 9) {
+			if(contadorDeNaviosBot < 17) {
 				contadorDeNaviosBot = 0;
 				for(int fileira = 0; fileira <10; fileira++) {
 					for(int coluna =0; coluna <10; coluna++) {
@@ -127,13 +129,7 @@ public class Bot extends Participante{
 						tabuleiroBot.setTabuleiro(fileira, coluna, zerarNV);
 					}
 				}
-				System.out.println("Contamos seus navios e ta tudo errado, arruma essas posições ae rapá!");
-				tabuleiroBot.mostrarTabuleiro();
 			}
-			else {
-				System.out.println("Contamos seus navios e ta tudo certo!");
-			}
-
 		}
 	}
 	
@@ -163,11 +159,10 @@ public class Bot extends Participante{
 		}
 	}
 
-
 	@Override
 	public void intimidar(Participante ameacador, Participante ameacado) {
 		System.out.println(ameacador.getNome() + " grita: ");
-		System.out.println("Destruirei todos seus navios "+ameacado.getNome()+"!");
+		System.out.println("- Destruirei todos seus navios "+ameacado.getNome()+"!");
 	}
 
 }

@@ -8,12 +8,11 @@ Scanner scanner = new Scanner(System.in);
 	
 	protected String nome;
 	protected int acertos;
-	protected int pontos;
 	
 	public Participante(String nome){
 		this.nome = nome;
 		this.acertos = 0;
-		this.pontos = 100;
+		
 	}
 	
 	public String getNome() {
@@ -28,12 +27,7 @@ Scanner scanner = new Scanner(System.in);
 	public void setAcertos() {
 		acertos++;
 	}
-	public int getPontos() {
-		return pontos;
-	}
-	public void diminuirPontos() {
-		pontos--;
-	}
+	
 	public abstract void intimidar(Participante ameacador, Participante ameacado);
 	
 }
